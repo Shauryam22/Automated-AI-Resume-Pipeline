@@ -1,0 +1,168 @@
+% AUTO-INSERT-PROJECTS-HERE
+
+\documentclass[a4paper,11pt]{article}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[pdftex]{hyperref}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins to maximize page space
+\addtolength{\oddsidemargin}{-0.530in}
+\addtolength{\evensidemargin}{-0.375in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.65in}
+\addtolength{\textheight}{1.25in}
+
+\urlstyle{rm}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting - tightened
+\titleformat{\section}{
+  \vspace{-7pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{#3} & \textit{#4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-3pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+% Tightened itemize margins
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*, itemsep=0pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-----------------------------
+%%%%%%  CV STARTS HERE  %%%%%%
+
+\begin{document}
+
+%----------HEADING-----------------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{{\LARGE Shaurya Malhotra}} & Email: \href{mailto:malhotrashaurya11@gmail.com}{malhotrashaurya11@gmail.com}\\
+  \href{https://github.com/Shauryam22}{GitHub:~github.com/Shauryam22} \\
+  \href{https://www.linkedin.com/in/shaurya-malhotra-34405a26a}{LinkedIn:~linkedin.com/in/shaurya-malhotra-34405a26a} & Mobile: +91 821-871-7845 \\
+\end{tabular*}
+
+%-----------EDUCATION-----------------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Vellore Institute of Technology Chennai}{Chennai, India}
+      {Master of Science - Data Science;  GPA: 8.97}{July 2025 -- Expected July 2027}
+      \resumeItemListStart
+        \resumeItem{Courses}{Artificial Intelligence, Machine Learning, Regression and Predictive Modelling, Database Management, Data Structures, Analysis of Algorithms, Databases, Statistical Analysis, Data Visualization, Analytical Skills}
+      \resumeItemListEnd
+    \resumeSubheading
+      {University of Delhi}{Delhi, India}
+      {Bachelor of Science - Physics Hons;  GPA: 8.03}{July 2022 -- June 2025}
+      \resumeItemListStart
+        \resumeItem{Courses}{Analytical skills, Classical Mechanics, Quantum Mechanics, Statistical Mechanics, Mathematical Physics}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+        
+\section{Skills Summary}
+    \resumeSubHeadingListStart
+    \resumeSubItem{Languages}{~~~~~~Python, SQL, Java, C, R}
+    \resumeSubItem{Frameworks}{~~~~PyTorch, FastAPI, LLM, Scikit, Pandas, Jupyter, NumPy, Matplotlib, Seaborn, TensorFlow}
+    \resumeSubItem{Tools}{~~~~~~~~~~~~~~Git, MLflow, Docker, DagsHub, PostgreSQL, MongoDB, Power BI, Tableau, MS-Excel, Latex}
+    \resumeSubItem{Platforms}{~~~~~~~VS Code, IntelliJ, Leetcode, PyCharm}
+    \resumeSubItem{Soft Skills}{~~~~~~~Time Management, Leadership, Writing, Public Speaking}
+\resumeSubHeadingListEnd
+
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading{Research Experience {\href{https://github.com/Shauryam22/Hybrid-GNN-x-Transformer.git}{\textcolor{blue}{[Link]}}}}{VIT Chennai} 
+    { Developed a Hybrid GNN+Transformer AI/Human Text Detection}{Sept 2025 -- Feb 2026}
+    \resumeItemListStart
+        \resumeItem{Built from scratch}
+          {Created a hybrid deep learning model to identify AI-generated code with \textbf{93.5\% accuracy}, significantly outperforming standard text-based classifiers.}
+        \resumeItem{Building Architecture}
+          {Engineered a dual-branch architecture that analyzes both the sequential "meaning" of code (Transformer) and its structural "shape" (Graph Attention Network).}
+        \resumeItem{Fine Tuning}
+          {Improved model performance by \textbf{54\%} by integrating a custom "Global Co-occurrence Graph" to capture complex programming syntax patterns.}
+        \resumeItem{Metrics}
+          {Achieved high-fidelity results with a \textbf{96.5\% precision rate}, ensuring human-written code is rarely misclassified as AI.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------------
+\section{Projects}
+\resumeSubHeadingListStart
+\resumeSubItem{Deployed Machine Learning Web App [\href{https://book-recommender-system-6a49.onrender.com/}{\textcolor{blue}{Website}}]}
+  {Designed a personalized recommendation system by calculating cosine similarity across high-dimensional feature vectors, successfully mapping user preferences against a catalog of [5,000$+$] items. Built a responsive Flask web application to serve real-time ML predictions, reducing inference time by [30\%] through optimized Pandas data handling and NumPy vectorization.}
+
+\resumeSubItem{Insurance Premium Predictor (FastAPI, Docker, ML)[\href{https://github.com/Shauryam22/Insurance_Premium_Prediction_API.git}{\textcolor{blue}{Link}}]}
+  {Developed an end-to-end machine learning pipeline to predict insurance premiums based on demographic and health data. Engineered a high-performance REST API using \textbf{FastAPI} to serve real-time model inferences. Containerized the application and its dependencies using \textbf{Docker}, ensuring consistent deployment environments and demonstrating robust MLOps practices.}
+% \resumeSubItem{AI Agent Simulation (Python, OOP) \href{https://github.com/Shauryam22/Agents-Based-Vacuum-Cleaner.git}{\textcolor{blue}{[Link]}}}
+%   {Engineered a Python-based AI agent simulation using OOP principles, achieving a \textbf{25\% reduction} in algorithm runtime through optimized code; also improved code maintainability scores.}
+\resumeSubHeadingListEnd
+
+%-----------ACHIEVEMENTS-----------------
+\vspace{-3pt}
+\section{Leadership \& Achievements}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Event Coordinator -- Climate \& Sustainability Hackathon}{Chennai, India}
+      {VIT Chennai}{March 2026}
+      \resumeItemListStart
+        \resumeItem{Event Execution}
+          {Successfully planned and conducted a multi-college hackathon focused on developing technology solutions for climate and sustainability challenges.}
+        \resumeItem{Team Coordination}
+          {Managed end-to-end logistics, event scheduling, and participation for 10 competing teams from various colleges, ensuring a seamless and competitive environment.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Top 9 Finalists (out of 40 Teams)}{VIT Chennai}
+      {Agrhinova Hackathon}{April 2026}
+      \resumeItemListStart
+        \resumeItem{Full-Stack Engineering}
+          {Developed an end-to-end ag-tech web application in 24 hours, integrating a custom data-processing backend with an interactive frontend dashboard.}
+        \resumeItem{Algorithmic Modeling}
+          {Built a rule-based weighted scoring model to evaluate metrics and applied statistical smoothing to API data to visualize reliable, noise-free trends.}
+        \resumeItem{Industry Pitch}
+          {Pitched the fully functional prototype to industry leadership at BirdTech Solutions, demonstrating technical execution and business viability.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------CERTIFICATES-----------------
+\vspace{-3pt}
+\section{Certificates}
+\resumeSubHeadingListStart
+\resumeSubItem{Supervised Machine Learning (Stanford) \href{https://www.coursera.org/account/accomplishments/certificate/X4QH93PRGJ7N}{\color{blue}[Certificate]}}
+{Mastered gradient descent and regularization. Implemented regression models from scratch using NumPy and Scikit-Learn.}
+
+\resumeSubItem{What is Data Science? (IBM) \href{https://www.coursera.org/verify/YOUR_ID_HERE}{\color{blue}[Certificate]}}
+{Explored the data science lifecycle and methodology. Focused on defining data-driven problems for industry-scale applications.}
+\resumeSubHeadingListEnd
+
+\end{document}
