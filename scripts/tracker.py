@@ -2,7 +2,7 @@ import requests
 import json
 import os
 
-USERNAME ="ShaMal22" # <-- CHANGE THIS
+USERNAME ="Shauryam22" # <-- CHANGE THIS
 TOKEN = os.getenv("GITHUB_TOKEN")
 REPO = os.getenv("GITHUB_REPOSITORY") 
 
