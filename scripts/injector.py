@@ -37,7 +37,7 @@ for i, line in enumerate(lines):
 if start_idx != -1:
     # Find the very next \resumeSubHeadingListEnd
     for i in range(start_idx + 1, len(lines)):
-        if "resumeSubHeadingListEnd" in lines[i]:
+        if "% RESUME-PROJECT-END" in lines[i]:
             end_idx = i
             break
 
