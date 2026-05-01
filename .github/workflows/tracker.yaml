@@ -36,3 +36,4 @@ jobs:
           git add tracked_repos.json
           git commit -m "Auto-update tracked repos" || echo "No changes to commit"
           git push
+          git diff --quiet && git diff --staged --quiet || (git commit -m "AI Auto-inject project into resume" && git pull --rebase origin main && git push)
