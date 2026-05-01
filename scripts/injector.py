@@ -29,7 +29,7 @@ You MUST output ONLY valid LaTeX code matching this exact format.
 You MUST use this exact URL for the hyperlink: {repo_url}
 
 \\resumeSubItem{{Project Name (Tech Stack) [\\href{{{repo_url}}}{{\\textcolor{{blue}}{{Link}}}}]}}
-  {{Your action-driven description here.}}
+  then from next line {{Your action-driven description here in pointwise punchy way and something that recruiter will definitely select for internship.}}
 
 CRITICAL RULES:
 - Do NOT wrap the output in markdown formatting (no ```latex).
