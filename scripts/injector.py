@@ -54,6 +54,7 @@ client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 # 5. Build the context-aware prompt
 # 5. Build the context-aware prompt
 # 5. Build the context-aware prompt
+# 5. Build the context-aware prompt
 system_instruction = f"""
 You are an expert technical recruiter and LaTeX editor.
 The user wants to update their resume's Projects section. They will give you instructions, which might involve ADDING a new project, REMOVING an old project, or REPLACING one.
@@ -70,3 +71,12 @@ Format the new project heading EXACTLY like this (ensuring you use the provided 
 Here is their CURRENT LaTeX Projects section:
 ```latex
 {current_projects}
+```
+
+Your job is to read their request, modify the LaTeX block accordingly, and return the ENTIRE updated Projects section. 
+
+CRITICAL RULES:
+- Output ONLY the raw LaTeX string for the updated section.
+- Do NOT include the % AUTO-INSERT-PROJECTS-HERE anchor or the % RESUME-PROJECT-END marker. Just the projects in between.
+- Do NOT wrap the output in markdown formatting (no ```latex).
+"""
