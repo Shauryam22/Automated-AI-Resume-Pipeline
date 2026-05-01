@@ -25,12 +25,19 @@ jobs:
       - name: Install Dependencies
         run: pip install google-genai
 
+      # - name: Run AI Injector Script
+      #   env:
+      #     COMMENT_BODY: ${{ github.event.comment.body }}
+      #     GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} # NEW: Pass the key to Python
+      #   run: python scripts/injector.py
       - name: Run AI Injector Script
         env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           COMMENT_BODY: ${{ github.event.comment.body }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} # NEW: Pass the key to Python
-        run: python scripts/injector.py
-
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          echo "THE COMMENT BODY IS: ${{ github.event.comment.body }}"
+          python -u scripts/injector.py
       - name: Commit and Push Updated Resume
         run: |
           git config --global user.name "github-actions[bot]"
