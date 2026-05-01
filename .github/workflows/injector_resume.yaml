@@ -41,16 +41,17 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
-          echo "--- CHECKING GIT STATUS BEFORE ADD ---"
-          git status
-          
           git add resume.tex
           
-          echo "--- CHECKING WHAT GIT SEES TO COMMIT ---"
-          git diff --staged
-          
-          git diff --quiet && git diff --staged --quiet || (git commit -m "AI Auto-inject project into resume" && git push)
+          # Check if there are changes to commit
+          if ! git diff --staged --quiet; then
+            git commit -m "AI Auto-inject project into resume"
+            git fetch origin main
+            git pull --rebase origin main
+            git push origin HEAD:main
+          else
+            echo "No changes to commit."
+          fi
 
       - name: Close Issue
         env:
