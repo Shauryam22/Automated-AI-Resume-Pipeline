@@ -23,7 +23,7 @@ jobs:
 
       # NEW: Install the Gemini SDK
       - name: Install Dependencies
-        run: pip install google-generativeai
+        run: pip install google-genai
 
       - name: Run AI Injector Script
         env:

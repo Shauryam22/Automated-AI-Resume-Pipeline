@@ -1,7 +1,7 @@
 import os
 import sys
 import re
-import google.generativeai as genai
+from google import genai # NEW SDK IMPORT
 
 # 1. Get the raw comment and the original issue body
 raw_prompt = os.environ.get("COMMENT_BODY", "").strip()
@@ -12,13 +12,11 @@ if not raw_prompt or raw_prompt.upper() == "SKIP":
     sys.exit(0)
 
 # 2. Extract the GitHub URL from the original issue text
-# The tracker wrote: "New public repository detected: https://github.com/..."
 url_match = re.search(r"(https://github\.com/\S+)", issue_body)
 repo_url = url_match.group(1) if url_match else "https://github.com/Shauryam22/YOUR_REPO"
 
-# 3. Configure the AI
-genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-model = genai.GenerativeModel('gemini-1.5-flash')
+# 3. Configure the AI Client (NEW SYNTAX)
+client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
 # 4. Build the dynamic instructions with the extracted URL
 system_instruction = f"""
@@ -39,10 +37,13 @@ CRITICAL RULES:
 - Output ONLY the raw LaTeX string.
 """
 
-# 5. Ask the AI to format your prompt
+# 5. Ask the AI to format your prompt (NEW SYNTAX)
 try:
     print("Calling AI to format the resume point...")
-    response = model.generate_content(f"{system_instruction}\n\nUser Input: {raw_prompt}")
+    response = client.models.generate_content(
+        model='gemini-2.5-flash',
+        contents=f"{system_instruction}\n\nUser Input: {raw_prompt}"
+    )
     ai_formatted_latex = response.text.strip()
     
     if ai_formatted_latex.startswith("```"):
