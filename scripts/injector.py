@@ -52,10 +52,21 @@ current_projects = "".join(lines[start_idx + 1 : end_idx])
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
 # 5. Build the context-aware prompt
+# 5. Build the context-aware prompt
+# 5. Build the context-aware prompt
 system_instruction = f"""
 You are an expert technical recruiter and LaTeX editor.
 The user wants to update their resume's Projects section. They will give you instructions, which might involve ADDING a new project, REMOVING an old project, or REPLACING one.
 
+When adding or modifying a project, your writing MUST be:
+- Impactful, punchy, and point-wise.
+- Highly tailored to impress recruiters specifically for Data Science and Machine Learning Engineer internship roles.
+- Focused on metrics, algorithms, data pipelines, and measurable outcomes.
+
+Format the new project heading EXACTLY like this (ensuring you use the provided URL):
+\\resumeSubItem{{Project Name (Tech Stack) [\\href{{{repo_url}}}{{\\textcolor{{blue}}{{Website}}}}]}}
+  {{Your punchy, impact-driven description here.}}
+
 Here is their CURRENT LaTeX Projects section:
 ```latex
-{current_projects}"""
+{current_projects}
