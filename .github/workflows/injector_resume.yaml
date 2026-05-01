@@ -10,7 +10,6 @@ permissions:
 
 jobs:
   update-resume:
-    # Only run if the issue is an open issue (not a PR) and the comment author is the repository owner
     if: ${{ !github.event.issue.pull_request && github.event.comment.user.login == github.repository_owner }}
     runs-on: ubuntu-latest
     steps:
@@ -22,9 +21,14 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Run Injector Script
+      # NEW: Install the Gemini SDK
+      - name: Install Dependencies
+        run: pip install google-generativeai
+
+      - name: Run AI Injector Script
         env:
           COMMENT_BODY: ${{ github.event.comment.body }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} # NEW: Pass the key to Python
         run: python scripts/injector.py
 
       - name: Commit and Push Updated Resume
@@ -32,11 +36,16 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add resume.tex
-          # Only commit if the python script actually changed the file
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-inject project into resume" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "AI Auto-inject project into resume" && git push)
 
       - name: Close Issue
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh issue close ${{ github.event.issue.number }} --reason "completed"
+      - name: Run AI Injector Script
+        env:
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          ISSUE_BODY: ${{ github.event.issue.body }} # NEW: Grabs the bot's original text
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/injector.py
