@@ -35,9 +35,8 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           COMMENT_BODY: ${{ github.event.comment.body }}
           ISSUE_BODY: ${{ github.event.issue.body }}
-        run: |
-          echo "THE COMMENT BODY IS: ${{ github.event.comment.body }}"
-          python -u scripts/injector.py
+        run: python -u scripts/injector.py
+       
       - name: Commit and Push Updated Resume
         run: |
           git config --global user.name "github-actions[bot]"
