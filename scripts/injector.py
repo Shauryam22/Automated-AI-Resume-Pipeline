@@ -1,7 +1,7 @@
 import os
 import sys
 import re
-from google import genai # NEW SDK IMPORT
+from google import genai
 
 # 1. Get the raw comment and the original issue body
 raw_prompt = os.environ.get("COMMENT_BODY", "").strip()
@@ -11,53 +11,12 @@ if not raw_prompt or raw_prompt.upper() == "SKIP":
     print("No valid content to inject, or SKIP was requested.")
     sys.exit(0)
 
-# 2. Extract the GitHub URL from the original issue text
+# Extract the GitHub URL from the original issue text
 url_match = re.search(r"(https://github\.com/\S+)", issue_body)
 repo_url = url_match.group(1) if url_match else "https://github.com/Shauryam22/YOUR_REPO"
 
-# 3. Configure the AI Client (NEW SYNTAX)
-client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
-
-# 4. Build the dynamic instructions with the extracted URL
-system_instruction = f"""
-You are an expert technical recruiter and LaTeX formatter.
-The user will provide a rough description of a software project they just open-sourced. 
-Your job is to rewrite it into a highly professional, punchy, impact-driven resume bullet point.
-Focus on action verbs and technical skills.
-
-You MUST output ONLY valid LaTeX code matching this exact format.
-You MUST use this exact URL for the hyperlink: {repo_url}
-
-\\resumeSubItem{{Project Name (Tech Stack) [\\href{{{repo_url}}}{{\\textcolor{{blue}}{{Link}}}}]}}
-  then from next line {{Your action-driven description here in pointwise punchy way and something that recruiter will definitely select for internship.}}
-
-CRITICAL RULES:
-- Do NOT wrap the output in markdown formatting (no ```latex).
-- Do NOT output any conversational text or explanations.
-- Output ONLY the raw LaTeX string.
-"""
-
-# 5. Ask the AI to format your prompt (NEW SYNTAX)
-try:
-    print("Calling AI to format the resume point...")
-    response = client.models.generate_content(
-        model='gemini-2.5-flash',
-        contents=f"{system_instruction}\n\nUser Input: {raw_prompt}"
-    )
-    ai_formatted_latex = response.text.strip()
-    
-    if ai_formatted_latex.startswith("```"):
-        ai_formatted_latex = "\n".join(ai_formatted_latex.split("\n")[1:-1])
-        
-    print("Generated LaTeX:\n", ai_formatted_latex)
-except Exception as e:
-    print(f"Error calling AI: {e}")
-    sys.exit(1)
-
-# 6. Inject into the .tex file
+# 2. Read the current resume to find the existing projects
 resume_file = "resume.tex"
-anchor = "% AUTO-INSERT-PROJECTS-HERE"
-
 try:
     with open(resume_file, "r") as f:
         lines = f.readlines()
@@ -65,10 +24,38 @@ except FileNotFoundError:
     print(f"Error: {resume_file} not found.")
     sys.exit(1)
 
-with open(resume_file, "w") as f:
-    for line in lines:
-        f.write(line)
-        if anchor in line:
-            f.write(f"\n{ai_formatted_latex}\n")
+# 3. Find the exact bounds of the Projects section
+anchor = "% AUTO-INSERT-PROJECTS-HERE"
+start_idx = -1
+end_idx = -1
 
-print(f"Successfully injected project with URL: {repo_url}")
+for i, line in enumerate(lines):
+    if anchor in line:
+        start_idx = i
+        break
+
+if start_idx != -1:
+    # Find the very next \resumeSubHeadingListEnd
+    for i in range(start_idx + 1, len(lines)):
+        if "resumeSubHeadingListEnd" in lines[i]:
+            end_idx = i
+            break
+
+if start_idx == -1 or end_idx == -1:
+    print("Error: Could not find the anchor or the section end marker in resume.tex.")
+    sys.exit(1)
+
+# Extract the current LaTeX sitting in the projects section
+current_projects = "".join(lines[start_idx + 1 : end_idx])
+
+# 4. Configure the AI
+client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+
+# 5. Build the context-aware prompt
+system_instruction = f"""
+You are an expert technical recruiter and LaTeX editor.
+The user wants to update their resume's Projects section. They will give you instructions, which might involve ADDING a new project, REMOVING an old project, or REPLACING one.
+
+Here is their CURRENT LaTeX Projects section:
+```latex
+{current_projects}"""
