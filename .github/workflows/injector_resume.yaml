@@ -1,16 +1,16 @@
-name: Inject Resume Updates
+name: Global Resume Auto-Updater
 
 on:
-  issue_comment:
-    types: [created]
+  schedule:
+    - cron: '0 0 * * *' # Runs every day at midnight UTC
+  workflow_dispatch: # Allows you to run it manually from the GitHub UI
 
 permissions:
-  contents: write
-  issues: write
+  contents: write 
+  issues: write 
 
 jobs:
   update-resume:
-    if: ${{ !github.event.issue.pull_request && github.event.comment.user.login == github.repository_owner }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -21,22 +21,18 @@ jobs:
         with:
           python-version: '3.x'
 
-      # NEW: Install the Gemini SDK
       - name: Install Dependencies
-        run: pip install google-genai
+        # Added google-genai here so the AI can run
+        run: pip install requests google-genai
 
-      # - name: Run AI Injector Script
-      #   env:
-      #     COMMENT_BODY: ${{ github.event.comment.body }}
-      #     GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} # NEW: Pass the key to Python
-      #   run: python scripts/injector.py
-      - name: Run AI Injector Script
+      - name: Run Global Radar Script
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Added Gemini API Key here so it has access
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          COMMENT_BODY: ${{ github.event.comment.body }}
-          ISSUE_BODY: ${{ github.event.issue.body }}
-        run: python -u scripts/injector.py
-       
+        # NOTE: Make sure your python file is named injector.py (or change this line to tracker.py)
+        run: python scripts/injector.py
+
       - name: Commit and Push Updated Resume
         run: |
           git config --global user.name "github-actions[bot]"
@@ -53,26 +49,10 @@ jobs:
             echo "No changes to commit."
           fi
 
-      - name: Close Issue
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh issue close ${{ github.event.issue.number }} --reason "completed"
-      - name: Run AI Injector Script
-        env:
-          COMMENT_BODY: ${{ github.event.comment.body }}
-          ISSUE_BODY: ${{ github.event.issue.body }} # NEW: Grabs the bot's original text
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python scripts/injector.py
-
-      # ... (Your previous step that pushes to main is right above this)
-
       - name: Compile LaTeX to PDF
         uses: xu-cheng/latex-action@v3
         with:
           root_file: resume.tex
-          # Note: This action spins up a full LaTeX environment. 
-          # It might add ~1 minute to your total workflow time.
 
       - name: Send PDF to Email
         uses: dawidd6/action-send-mail@v3
@@ -82,8 +62,8 @@ jobs:
           secure: true
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: "AI Bot: Your Resume has been Updated!"
+          subject: "🚀 AI Bot: Your Resume has been Updated!"
           to: ${{ secrets.RECEIVER_EMAIL }}
           from: GitHub Actions Bot
-          body: "Your Zero-Touch CI/CD pipeline successfully detected a new project, wrote the LaTeX bullet points, and compiled the updated resume. The PDF is attached!"
+          body: "Your Global Radar detected a new project, wrote the LaTeX bullet points, and compiled the updated resume. The PDF is attached!"
           attachments: resume.pdf
