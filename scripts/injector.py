@@ -3,7 +3,7 @@ import sys
 import requests
 from google import genai
 
-print("--- 🌍 GLOBAL RADAR SCRIPT STARTED ---")
+print("---GLOBAL RADAR SCRIPT STARTED ---")
 
 # 1. Parse Current Resume (To check what projects are already in there)
 resume_file = "resume.tex"
@@ -11,7 +11,7 @@ try:
     with open(resume_file, "r") as f:
         resume_text = f.read()
 except FileNotFoundError:
-    print(f"🚨 ERROR: {resume_file} not found.")
+    print(f"ERROR: {resume_file} not found.")
     sys.exit(1)
 
 # Find the injection boundaries
