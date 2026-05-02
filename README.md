@@ -1,4 +1,3 @@
-#Markdown
 
 # 🚀 AI-Driven Resume CI/CD Pipeline
 <!-- RESUME: ADD -->
