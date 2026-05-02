@@ -27,7 +27,8 @@ This project solves the "stale resume" problem using an event-driven automation 
 3. **The AI Injection:** The script extracts the README context and feeds it to the **Gemini 2.0 Flash API**. The LLM is prompted to act as a state synchronizer, generating 2-3 high-impact, ATS-friendly bullet points formatted strictly in LaTeX.
 4. **The Compilation:** The generated LaTeX is injected into a master `resume.tex` file using anchor tags.
 5. **The Delivery:** The workflow compiles the `.tex` file into a clean, 1-page PDF using a TeX Live environment and pushes the updated code back to the repository.
-
+**CAUTION**: If a project is not in the GitHub repo with proper ADD tag, then it will be removed from your resume by the pipeline.
+So if you don't want a project in your resume, then remove the Resume ADD tag from its README.
 ---
 
 ## 🛠️ Tech Stack
