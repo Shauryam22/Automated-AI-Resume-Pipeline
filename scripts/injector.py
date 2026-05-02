@@ -4,7 +4,8 @@ import re
 import requests
 from google import genai
 
-print("--- 🌍 SMART SYNC RADAR STARTED ---")
+USERNAME = 'your_github_username'
+print("--- SMART SYNC RADAR STARTED ---")
 
 # ─────────────────────────────────────────
 # 1. Parse Current Resume
@@ -15,14 +16,14 @@ try:
     with open(resume_file, "r") as f:
         resume_text = f.read()
 except FileNotFoundError:
-    print(f"🚨 ERROR: {resume_file} not found.")
+    print(f" ERROR: {resume_file} not found.")
     sys.exit(1)
 
 lines = resume_text.splitlines(True)
 start_idx, end_idx = -1, -1
 
 for i, line in enumerate(lines):
-    if "% AUTO-INSERT-PROJECTS-HERE" in line:
+    if "% AUTO-INSERT-PROJECTS-HERE" in line: # This is your anchor in LATEX.
         start_idx = i
     elif "% RESUME-PROJECT-END" in line:
         end_idx = i
@@ -42,7 +43,7 @@ current_urls = set([url.strip().rstrip('/') for url in current_urls_raw])
 # ─────────────────────────────────────────
 print("🔍 Scanning GitHub for active tags...")
 
-api_url = "https://api.github.com/users/Shauryam22/repos?type=public&per_page=100"
+api_url = f"https://api.github.com/users/{USERNAME}/repos?type=public&per_page=100"
 response = requests.get(api_url)
 
 if response.status_code != 200:
@@ -51,7 +52,7 @@ if response.status_code != 200:
 
 repos = response.json()
 
-MAGIC_ADD    = "<!-- RESUME: ADD -->"
+MAGIC_ADD    = "<!-- RESUME: ADD -->"   # TAGS TO BE ADDED ACCORDING TO YOUR NEED
 MAGIC_UPDATE = "<!-- RESUME: UPDATE -->"
 
 desired_repos = []
@@ -61,9 +62,9 @@ for repo in repos:
     repo_url  = repo['html_url'].rstrip('/')
 
     raw_urls = [
-        f"https://raw.githubusercontent.com/Shauryam22/{repo_name}/main/README.md",
-        f"https://raw.githubusercontent.com/Shauryam22/{repo_name}/master/README.md",
-        f"https://raw.githubusercontent.com/Shauryam22/{repo_name}/main/readme.md",
+        f"https://raw.githubusercontent.com/{USERNAME}/{repo_name}/main/README.md",
+        f"https://raw.githubusercontent.com/{USERNAME}/{repo_name}/master/README.md",
+        f"https://raw.githubusercontent.com/{USERNAME}/{repo_name}/main/readme.md",
     ]
 
     readme_text = ""
