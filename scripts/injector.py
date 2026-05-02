@@ -56,6 +56,7 @@ client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
 system_instruction = f"""
 You are an expert technical recruiter and LaTeX editor.
+TAKE REAL GOOD CARE OF NOT WASTING SPACE and ALSO TAKE CARE OF NOT USING SYMBOLS THAT LATEX DONT SUPPORT like for BOLD dont use **.
 The user wants to update their resume's Projects section. They will give you instructions, which might involve ADDING a new project, REMOVING an old project, or REPLACING one.
 
 When a person gives instructions to add new project and the project details,DONT WRITE AS IT IS, you modify it according to below rules, your writing MUST be:
