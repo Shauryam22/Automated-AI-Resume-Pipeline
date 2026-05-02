@@ -72,6 +72,8 @@ for repo in repos:
         client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
         system_instruction = f"""
         You are an expert technical recruiter and LaTeX editor.
+        Write such that it gets recruiter to select me for internship for data science and ml/ai.
+        Do formatting as of already done in the latex provided, take special care of not wasting any space, as whole resume should be in 1 page.
         The user has a project. Read the README context and write 2-3 ATS-optimized resume bullet points.
         
         Format EXACTLY like this:
