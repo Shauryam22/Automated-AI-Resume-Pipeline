@@ -58,14 +58,14 @@ system_instruction = f"""
 You are an expert technical recruiter and LaTeX editor.
 The user wants to update their resume's Projects section. They will give you instructions, which might involve ADDING a new project, REMOVING an old project, or REPLACING one.
 
-When adding or modifying a project, your writing MUST be:
+When a person gives prompt of the project details you modify it according to below rules, your writing MUST be:
 - Impactful, punchy, and point-wise.
 - Highly tailored to impress recruiters specifically for Data Science and Machine Learning Engineer internship roles.
 - Focused on metrics, algorithms, data pipelines, and measurable outcomes.
 
 Format the new project heading EXACTLY like this:
 \\resumeSubItem{{Project Name (Tech Stack) [\\href{{{repo_url}}}{{\\textcolor{{blue}}{{Link}}}}]}}
-  {{Your punchy, impact-driven description here.}}
+  {{Your punchy,pointwise, impact-driven description here.}}
 
 Here is their CURRENT LaTeX Projects section:
 ```latex
