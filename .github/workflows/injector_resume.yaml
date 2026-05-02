@@ -64,3 +64,26 @@ jobs:
           ISSUE_BODY: ${{ github.event.issue.body }} # NEW: Grabs the bot's original text
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/injector.py
+
+      # ... (Your previous step that pushes to main is right above this)
+
+      - name: Compile LaTeX to PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: resume.tex
+          # Note: This action spins up a full LaTeX environment. 
+          # It might add ~1 minute to your total workflow time.
+
+      - name: Send PDF to Email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "AI Bot: Your Resume has been Updated!"
+          to: ${{ secrets.RECEIVER_EMAIL }}
+          from: GitHub Actions Bot
+          body: "Your Zero-Touch CI/CD pipeline successfully detected a new project, wrote the LaTeX bullet points, and compiled the updated resume. The PDF is attached!"
+          attachments: resume.pdf
