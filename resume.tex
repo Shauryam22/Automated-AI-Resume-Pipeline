@@ -1,6 +1,6 @@
-
-
 \documentclass[a4paper,11pt]{article}
+%\documentclass
+\setlength{\footskip}{4.08003pt}
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
 \usepackage{titlesec}
@@ -70,7 +70,7 @@
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
   \textbf{{\LARGE Shaurya Malhotra}} & Email: \href{mailto:malhotrashaurya11@gmail.com}{malhotrashaurya11@gmail.com}\\
   \href{https://github.com/Shauryam22}{GitHub:~github.com/Shauryam22} \\
-  \href{https://www.linkedin.com/in/shaurya-malhotra-34405a26a}{LinkedIn:~linkedin.com/in/shaurya-malhotra-34405a26a} & Mobile: +91 821-871-7845 \\
+  \href{https://www.linkedin.com/in/shaurya-malhotra-34405a26a}{LinkedIn:~linkedin.com/in/shaurya-malhotra-34405a26a} & Mobile: +91 8218717845 \\
 \end{tabular*}
 
 %-----------EDUCATION-----------------
@@ -79,14 +79,14 @@
     \resumeSubheading
       {Vellore Institute of Technology Chennai}{Chennai, India}
       {Master of Science - Data Science;  GPA: 8.97}{July 2025 -- Expected July 2027}
-      \resumeItemListStart
+      \resumeItemListStart\vspace{-3pt}
         \resumeItem{Courses}{Artificial Intelligence, Machine Learning, Regression and Predictive Modelling, Database Management, Data Structures, Analysis of Algorithms, Databases, Statistical Analysis, Data Visualization, Analytical Skills}
       \resumeItemListEnd
     \resumeSubheading
       {University of Delhi}{Delhi, India}
       {Bachelor of Science - Physics Hons;  GPA: 8.03}{July 2022 -- June 2025}
-      \resumeItemListStart
-        \resumeItem{Courses}{Analytical skills, Classical Mechanics, Quantum Mechanics, Statistical Mechanics, Mathematical Physics}
+      \resumeItemListStart\vspace{-3pt}
+        \resumeItem{Courses}{Analytical skills, Probability, Bayesian Statistics, Statistical Mechanics, Mathematical Physics}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
         
@@ -103,7 +103,7 @@
   \resumeSubHeadingListStart
     \resumeSubheading{Research Experience {\href{https://github.com/Shauryam22/Hybrid-GNN-x-Transformer.git}{\textcolor{blue}{[Link]}}}}{VIT Chennai} 
     { Developed a Hybrid GNN+Transformer AI/Human Text Detection}{Sept 2025 -- Feb 2026}
-    \resumeItemListStart
+    \resumeItemListStart\vspace{-3pt}
         \resumeItem{Built from scratch}
           {Created a hybrid deep learning model to identify AI-generated code with \textbf{93.5\% accuracy}, significantly outperforming standard text-based classifiers.}
         \resumeItem{Building Architecture}
@@ -121,40 +121,42 @@
 
 
 % AUTO-INSERT-PROJECTS-HERE
-\resumeSubItem{Enterprise RAG Pipeline & Document Sync API (Python, FastAPI, LangChain, FAISS, Docker) [\href{https://github.com/Shauryam22/RAG-Drive-Connector}{\textcolor{blue}{Link}}]}
-  {\begin{itemize}
-    \item Architected an **automated, real-time data ingestion pipeline** utilizing the Google Drive API for continuous PDF synchronization, parsing, and **FAISS vector database indexing**, establishing a dynamic RAG backend.
-    \item Maximized **LLM retrieval accuracy** by leveraging **HuggingFace sentence embeddings** and Meta’s Llama-3.1 (Groq Cloud), generating **strictly factual, context-grounded responses** and reducing hallucination.
-    \item Engineered a **scalable RESTful API (FastAPI, Uvicorn)** to serve real-time user queries and document processing, **containerizing the full MLOps architecture using Docker** for consistent, reproducible deployment environments.
-  \end{itemize}}
+\resumeSubItem{Enterprise RAG Pipeline \& Document Sync API (Python, FastAPI, LangChain, FAISS, Docker) [\href{https://github.com/Shauryam22/RAG-Drive-Connector}{\textcolor{blue}{Link}}]}
+  {\vspace{-8pt}
+  \begin{itemize}\itemsep0em \parskip0em
+    \item Engineered a real-time data ingestion pipeline connecting the Google Drive API to a \textbf{FAISS vector database} for continuous PDF synchronization and parsing, establishing an automated RAG backend.
+    \item Implemented highly accurate \textbf{LLM retrieval} by integrating \textbf{HuggingFace sentence embeddings} and Meta's \textbf{Llama-3.1} (Groq Cloud), generating strictly factual, context-grounded responses and minimizing hallucination risks.
+    \item Developed a scalable \textbf{RESTful API (FastAPI, Uvicorn)} for real-time query serving and document processing, containerizing the entire \textbf{MLOps architecture} using \textbf{Docker} for reproducible deployment.
+  \end{itemize}}%\vspace{-0.5em}
 
 \resumeSubItem{Insurance Premium Predictor (FastAPI, Docker, ML)[\href{https://github.com/Shauryam22/Insurance_Premium_Prediction_API.git}{\textcolor{blue}{Link}}]}
-  {Developed an end-to-end machine learning pipeline to predict insurance premiums based on demographic and health data. Engineered a high-performance REST API using \textbf{FastAPI} to serve real-time model inferences. Containerized the application and its dependencies using \textbf{Docker}, ensuring consistent deployment environments and demonstrating robust MLOps practices.}
-% RESUME-PROJECT-END
+  {\vspace{-8pt}
+  \begin{itemize}\itemsep0em \parskip0em
+    \item Developed an end-to-end machine learning pipeline to predict insurance premiums utilizing demographic and health data.
+    \item Engineered a high-performance \textbf{REST API} with \textbf{FastAPI} to serve real-time model inferences.
+    \item Containerized the application and dependencies using \textbf{Docker}, ensuring consistent deployment environments and demonstrating robust \textbf{MLOps practices}.
+  \end{itemize}}\vspace{-0.5em}
 \resumeSubHeadingListEnd
 
 %-----------ACHIEVEMENTS-----------------
-\vspace{-3pt}
+%\vspace{-3pt}
 \section{Leadership \& Achievements}
   \resumeSubHeadingListStart
     \resumeSubheading
       {Event Coordinator -- Climate \& Sustainability Hackathon}{Chennai, India}
       {VIT Chennai}{March 2026}
-      \resumeItemListStart
+      \resumeItemListStart\vspace{-3pt}
         \resumeItem{Event Execution}
           {Successfully planned and conducted a multi-college hackathon focused on developing technology solutions for climate and sustainability challenges.}
-        \resumeItem{Team Coordination}
-          {Managed end-to-end logistics, event scheduling, and participation for 10 competing teams from various colleges, ensuring a seamless and competitive environment.}
       \resumeItemListEnd
+\vspace{3pt}
 
     \resumeSubheading
-      {Top 9 Finalists (out of 40 Teams)}{VIT Chennai}
+      {Finalists (out of 40 Teams)}{VIT Chennai}
       {Agrhinova Hackathon}{April 2026}
-      \resumeItemListStart
+      \resumeItemListStart\vspace{-3pt}
         \resumeItem{Full-Stack Engineering}
           {Developed an end-to-end ag-tech web application in 24 hours, integrating a custom data-processing backend with an interactive frontend dashboard.}
-        \resumeItem{Algorithmic Modeling}
-          {Built a rule-based weighted scoring model to evaluate metrics and applied statistical smoothing to API data to visualize reliable, noise-free trends.}
         \resumeItem{Industry Pitch}
           {Pitched the fully functional prototype to industry leadership at BirdTech Solutions, demonstrating technical execution and business viability.}
       \resumeItemListEnd
@@ -166,9 +168,6 @@
 \resumeSubHeadingListStart
 \resumeSubItem{Supervised Machine Learning (Stanford) \href{https://www.coursera.org/account/accomplishments/certificate/X4QH93PRGJ7N}{\color{blue}[Certificate]}}
 {Mastered gradient descent and regularization. Implemented regression models from scratch using NumPy and Scikit-Learn.}
-
-\resumeSubItem{What is Data Science? (IBM) \href{https://www.coursera.org/verify/YOUR_ID_HERE}{\color{blue}[Certificate]}}
-{Explored the data science lifecycle and methodology. Focused on defining data-driven problems for industry-scale applications.}
 \resumeSubHeadingListEnd
 
 \end{document}
