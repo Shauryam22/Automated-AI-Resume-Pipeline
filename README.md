@@ -1,7 +1,7 @@
 Markdown
 
 # 🚀 AI-Driven Resume CI/CD Pipeline
-
+<!-- RESUME: ADD -->
 [![GitHub Actions Status](https://img.shields.io/badge/CI%2FCD-Active-success?logo=github-actions)](https://github.com/features/actions)
 [![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)](https://www.python.org/)
 [![Gemini API](https://img.shields.io/badge/AI-Gemini%202.0-orange?logo=google)](https://deepmind.google/technologies/gemini/)
