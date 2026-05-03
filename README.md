@@ -10,6 +10,8 @@ An automated, serverless pipeline that uses **GitHub Actions** and **Google's Ge
 
 No more manual formatting. When I ship a new project, this pipeline automatically writes ATS-optimized bullet points and rebuilds my master PDF.
 
+**You can change the pipeline according to your needs, like your own personalised prompts in  scipts/injector.py, or using a different LLM API by making changes in the YAML file, or changing the schedule of updates in the CI/CD pipeline.**
+
 ---
 
 ## 🎥 Pipeline Demo
@@ -78,24 +80,24 @@ Go to Settings > Secrets and variables > Actions and add the following:
 
     GEMINI_API_KEY: Your API key from Google AI Studio.
 
-    EMAIL_USERNAME: Write your mail id here
+    EMAIL_USERNAME: Write your email ID here
 
-    EMAIL_PASSWORD: Paste your app passwords generated in g-account
+    EMAIL_PASSWORD: Paste your app passwords generated in G-Account
 
-    RECEIVER_MAIL: write your mail id here also
+    RECEIVER_MAIL: Write your mail ID here also
 
-    GITHUB_TOKEN(dont create it as secrets): Ensure your workflow has Read/Write permissions to push the compiled resume back to the repo.
+    GITHUB_TOKEN(don't create it as secrets): Ensure your workflow has Read/Write permissions to push the compiled resume back to the repo.
     
-    To get better clarity of these variables, refer injector_resume.yaml and check the required varibles.
+    To get better clarity of these variables, refer to injector_resume.yaml and check the required variables.
 
 2. Environment Variables
 
-Replace USERNAME with your github username in both tracker.py and injector.py:
+Replace USERNAME with your GitHub username in both tracker.py and injector.py:
 
 
 3. Customize the LaTeX Template
 
-Modify the resume.tex file with your personal information, education, and hardcoded legacy projects. Leave the % AUTO-INSERT-PROJECTS-HERE tags and % RESUME-PROJECT-END exactly where they are in the Projects section in resume.tex demo file.
+Modify the resume.tex file with your personal information, education, and hardcoded legacy projects. Leave the % AUTO-INSERT-PROJECTS-HERE tags and % RESUME-PROJECT-END exactly where they are in the Projects section in the resume.tex demo file.
 📂 File Structure
 Plaintext
 
