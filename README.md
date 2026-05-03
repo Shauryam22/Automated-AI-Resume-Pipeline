@@ -1,5 +1,5 @@
 
-# 🚀 AI-Driven Resume CI/CD Pipeline
+#  AI-Driven Resume CI/CD Pipeline
 <!-- RESUME: ADD -->
 [![GitHub Actions Status](https://img.shields.io/badge/CI%2FCD-Active-success?logo=github-actions)](https://github.com/features/actions)
 [![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)](https://www.python.org/)
@@ -25,7 +25,7 @@ I have used my private automate_resume repo; you use the Automated_AI_Resume_Pip
 
 ---
 
-## 🧠 The Architecture
+##  The Architecture
 
 This project solves the "stale resume" problem using an event-driven automation loop:
 
@@ -49,7 +49,7 @@ So if you don't want a project in your resume, then remove the Resume ADD tag fr
 
 ---
 
-## 🚀 How It Works (The Magic)
+##  How It Works (The Magic)
 
 I never touch the `resume.tex` file directly when adding projects. Instead, I rely on two invisible HTML comments that the Python script looks for:
 
