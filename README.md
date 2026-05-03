@@ -20,8 +20,7 @@ No more manual formatting. When I ship a new project, this pipeline automaticall
 https://github.com/user-attachments/assets/464856e7-3753-4cf8-a383-26f3405d77ed
 
 
-I have used my private automate_resume repo; you use the Automated_AI_Resume_Pipeline.
-*
+**I have used my private automate_resume repo; you use the Automated_AI_Resume_Pipeline.**
 
 ---
 
